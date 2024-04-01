@@ -25,23 +25,28 @@ class _PathViewState extends State<PathView> {
         point: point,
         width: 100,
         child: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: Colors.deepOrange,
-                width: 2,
+          child: GestureDetector(
+            onTap: () {
+              print("privet");
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.deepOrange,
+                  width: 2,
+                ),
+                color: Colors.white,
               ),
-              color: Colors.white,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 7,
-                right: 7,
-                bottom: 2,
-                top: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 7,
+                  right: 7,
+                  bottom: 2,
+                  top: 1,
+                ),
+                child: Text(text),
               ),
-              child: Text(text),
             ),
           ),
         ),
@@ -141,6 +146,7 @@ class _PathViewState extends State<PathView> {
                 ...widget.path
                     .map((item) => Marker(
                           point: LatLng(item.latitude, item.longitude),
+                          width: 40,
                           height: 70,
                           child: const Align(
                             alignment: Alignment.topCenter,
@@ -158,17 +164,6 @@ class _PathViewState extends State<PathView> {
           ),
         ],
       ),
-      // ListView(
-      //   children: path
-      //       .map(
-      //         (item) => ListTile(
-      //           title: Text(
-      //             "${item.latitude}, ${item.longitude}",
-      //           ),
-      //         ),
-      //       )
-      //       .toList(),
-      // ),
     );
   }
 }

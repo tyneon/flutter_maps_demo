@@ -5,6 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:maps_demo/models/location_record.dart';
 import 'package:maps_demo/providers/save_location_provider.dart';
+import 'package:maps_demo/providers/paths_provider.dart';
 
 class RecordLocationWidget extends ConsumerStatefulWidget {
   const RecordLocationWidget({super.key});
@@ -25,6 +26,7 @@ class _RecordLocationWidgetState extends ConsumerState<RecordLocationWidget> {
           // stop
           BackgroundLocation.stopLocationService();
           ref.read(saveLocationProvider.notifier).save();
+          ref.read(pathsProvider.notifier).refresh();
           setState(() {
             isRecording = false;
           });

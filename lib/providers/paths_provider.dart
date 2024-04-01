@@ -8,7 +8,9 @@ part 'paths_provider.g.dart';
 @Riverpod(keepAlive: true)
 class Paths extends _$Paths {
   @override
-  List<List<LocationRecord>> build() {
+  List<List<LocationRecord>> build() => _load();
+
+  List<List<LocationRecord>> _load() {
     final box = Hive.box('records');
     final paths = <List<LocationRecord>>[];
     for (final item in box.keys) {
@@ -16,5 +18,9 @@ class Paths extends _$Paths {
       paths.add(data.cast<LocationRecord>());
     }
     return paths;
+  }
+
+  void refresh() {
+    state = _load();
   }
 }
